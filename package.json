@@ -30,6 +30,7 @@
         "clsx": "^1.2.1",
         "eslint": "8.37.0",
         "eslint-config-next": "13.3.0",
+        "eslint-plugin-prettier": "^4.2.1",
         "lucide-react": "^0.130.1",
         "next": "13.3.0",
         "prisma": "^4.12.0",
