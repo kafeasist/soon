@@ -56,7 +56,7 @@ export default async function handler(
 
         await prisma.user.create({ data: { email, token } });
 
-        await sendEmail(email);
+        await sendEmail(email, token);
 
         return res.status(201).json({
             status: 'success',

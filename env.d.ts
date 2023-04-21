@@ -5,5 +5,6 @@ namespace NodeJS {
         REDIS_TOKEN: string;
         RESEND_API_KEY: string;
         RESEND_EMAIL_FROM: string;
+        URL: string;
     }
 }
