@@ -17,6 +17,10 @@
         "comingsoon": "Yakında",
         "description": "kafeasist, yapay zeka tabanlı bir restoran işletme yazılım hizmetidir. kafeasist, işletmenizi yönetmeyi basitleştirir.",
         "subscribeInput": "E-posta adresinizi girin",
-        "subscribe": "Haberdar ol"
+        "subscribe": "Haberdar ol",
+        "wantToUnsubscribe": "Gazetenin aboneliğinden çıkmak istiyor musunuz?",
+        "unsubscribe": "Abonelikten çık",
+        "cancel": "Vazgeç",
+        "unsubscribeDescription": "Her zaman tekrardan abone olup kafeasist ile ilgili güncel gelişmelerden haberdar olabilirsiniz. Abonelikten çıkarsanız e-posta alma listesinden e-postanız silinecektir."
     }
 }

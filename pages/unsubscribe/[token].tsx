@@ -106,18 +106,16 @@ const Unsubscribe = () => {
                 <AlertDialogContent>
                     <AlertDialogHeader>
                         <AlertDialogTitle>
-                            Do you want to unsubscribe from the newsletter?
+                            {responses.html.wantToUnsubscribe}
                         </AlertDialogTitle>
                         <AlertDialogDescription>
-                            You can always subscribe again and get the latest
-                            news about kafeasist. This action will delete your
-                            e-mail from the e-mailing list of the news.
+                            {responses.html.unsubscribeDescription}
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
                         <Link href='/'>
                             <AlertDialogCancel disabled={loading}>
-                                Cancel
+                                {responses.html.cancel}
                             </AlertDialogCancel>
                         </Link>
                         <AlertDialogAction
@@ -127,7 +125,7 @@ const Unsubscribe = () => {
                             {loading ? (
                                 <Loader2 className='animate-spin' />
                             ) : (
-                                'Unsubscribe'
+                                responses.html.unsubscribe
                             )}
                         </AlertDialogAction>
                     </AlertDialogFooter>

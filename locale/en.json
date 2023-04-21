@@ -17,6 +17,10 @@
         "comingsoon": "Coming soon",
         "description": "kafeasist is a restaurant management software as a service powered with AI. kafeasist makes managing your business much more simpler.",
         "subscribeInput": "Enter your e-mail address",
-        "subscribe": "Subscribe"
+        "subscribe": "Subscribe",
+        "wantToUnsubscribe": "Do you want to unsubscribe from the newsletter?",
+        "unsubscribe": "Unsubscribe",
+        "cancel": "Cancel",
+        "unsubscribeDescription": "You can always subscribe again and get the latest news about kafeasist. This action will delete your e-mail from the e-mailing list of the news."
     }
 }
