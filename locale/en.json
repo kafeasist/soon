@@ -1,0 +1,22 @@
+{
+    "errorTitle": "ERROR",
+    "errors": {
+        "slowdown": "Please slow down and try again",
+        "required": "E-mail field is required",
+        "exists": "This e-mail is already subscribed",
+        "unknown": "An unknown error occurred. Please try again later",
+        "tokenNotFound": "Token was not found",
+        "invalidToken": "This token did not match any user"
+    },
+    "successTitle": "SUCCESS",
+    "success": {
+        "subscribe": "You have successfully subscribed to our newsletter",
+        "unsubscribe": "You have successfully unsubscribed from our newsletter"
+    },
+    "html": {
+        "comingsoon": "Coming soon",
+        "description": "kafeasist is a restaurant management software as a service powered with AI. kafeasist makes managing your business much more simpler.",
+        "subscribeInput": "Enter your e-mail address",
+        "subscribe": "Subscribe"
+    }
+}

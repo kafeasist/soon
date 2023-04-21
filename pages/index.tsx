@@ -1,124 +1,175 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import Logo from '@/components/Logo';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
+import Typography from '@/components/ui/Typography';
+import { useToast } from '@/hooks/useToast';
+import { sendSubscription } from '@/lib/api';
+import {
+    KnownLanguagesCode,
+    Responses,
+    getLanguageFile,
+} from '@/lib/loadLangs';
+import { isDarkMode, setDarkMode, setLanguage } from '@/lib/utils';
+import { Github, Loader2, Mail, Moon, Sun } from 'lucide-react';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-const inter = Inter({ subsets: ['latin'] })
+export type FormValues = {
+    email: string;
+};
 
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+const Home = () => {
+    const { register, handleSubmit } = useForm<FormValues>();
+    const { toast } = useToast();
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+    const [dark, setDark] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [sending, setSending] = useState(false);
+    const [lang, setLang] = useState<KnownLanguagesCode>('en');
+    const [responses, setResponses] = useState<Responses>({
+        errorTitle: 'ERROR',
+        errors: {},
+        successTitle: 'SUCCESS',
+        success: {},
+        html: {},
+    });
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+    useEffect(() => {
+        setLoading(true);
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+        if (
+            localStorage.theme === 'dark' ||
+            (!('theme' in localStorage) &&
+                window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
+        setDark(isDarkMode());
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
-}
+        const fetchResponses = async (lang: KnownLanguagesCode) => {
+            const responses = await getLanguageFile(lang);
+            setResponses(responses);
+        };
+
+        if (navigator) {
+            if (navigator.language === 'tr' || navigator.language === 'tr-TR') {
+                setLanguage('tr');
+                setLang('tr');
+                fetchResponses('tr');
+            } else {
+                setLanguage('en');
+                setLang('en');
+                fetchResponses('en');
+            }
+        }
+
+        setLoading(false);
+    }, []);
+
+    const handleDarkMode = () => {
+        if (dark) {
+            setDarkMode(false);
+            setDark(false);
+            document.documentElement.classList.remove('dark');
+        } else {
+            setDarkMode(true);
+            setDark(true);
+            document.documentElement.classList.add('dark');
+        }
+    };
+
+    const onSubmit: SubmitHandler<FormValues> = async (data) => {
+        setSending(true);
+        const result = await sendSubscription(data, lang);
+
+        if (!result.status)
+            return toast({
+                title: responses.errorTitle,
+                description: responses.errors.unknown,
+                variant: 'destructive',
+            });
+
+        if (result.status === 'success') {
+            toast({
+                title: responses.successTitle,
+                description: result.message,
+            });
+        } else {
+            toast({
+                title: responses.errorTitle,
+                description: result.message,
+                variant: 'destructive',
+            });
+        }
+        setSending(false);
+    };
+
+    if (loading) return <div />;
+
+    return (
+        <main className='h-screen bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-rose-100 to-teal-100 dark:from-gray-700 dark:via-gray-900 dark:to-black'>
+            <section className='container mx-auto flex h-screen flex-col items-center justify-center px-16 text-center dark:text-white md:px-24 lg:px-56'>
+                <Link href='/' className='mb-16 scale-150'>
+                    <Logo dark={dark} />
+                </Link>
+                <Typography
+                    variant='h1'
+                    className='mb-8 scale-125 animate-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 bg-clip-text !leading-normal text-transparent dark:from-indigo-200 dark:via-red-200 dark:to-yellow-100'
+                >
+                    {responses.html.comingsoon}
+                </Typography>
+                <Typography variant='p' className='max-w-lg scale-125'>
+                    {responses.html.description}
+                </Typography>
+                <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className='flex w-full justify-center'
+                >
+                    <div className='mt-14 w-full max-w-sm scale-125 justify-center md:flex md:flex-row md:space-x-2'>
+                        <Input
+                            className='mb-4 md:mb-0'
+                            type='email'
+                            placeholder={responses.html.subscribeInput}
+                            {...register('email', {
+                                required: true,
+                                pattern: /^\S+@\S+$/i,
+                            })}
+                        />
+                        <Button
+                            type='submit'
+                            className='w-full sm:ml-0 md:w-2/5'
+                            disabled={sending}
+                        >
+                            {sending ? (
+                                <Loader2 className='animate-spin' />
+                            ) : (
+                                responses.html.subscribe
+                            )}
+                        </Button>
+                    </div>
+                </form>
+                <div className='mt-16 flex w-full items-center justify-center space-x-24'>
+                    <Link href='https://github.com/kafeasist' target='_blank'>
+                        <Github className='h-8 w-8' />
+                    </Link>
+                    <Button variant='link' onClick={handleDarkMode}>
+                        {!dark ? (
+                            <Sun className='h-8 w-8' />
+                        ) : (
+                            <Moon className='h-8 w-8' />
+                        )}
+                    </Button>
+                    <Link href='mailto:destek@kafeasist.com'>
+                        <Mail className='h-8 w-8' />
+                    </Link>
+                </div>
+            </section>
+        </main>
+    );
+};
+
+export default Home;
