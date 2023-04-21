@@ -69,7 +69,7 @@ export default WelcomeEmail;
 const main = {
     padding: '3rem',
     borderRadius: '12px',
-    backgroundColor: '#eeeeee',
+    backgroundColor: '#ffffff',
     fontFamily:
         '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
 };
@@ -93,8 +93,9 @@ const btnContainer = {
 };
 
 const button = {
-    backgroundColor: '#cccccc',
+    backgroundColor: '#000000',
     borderRadius: '16px',
+    color: '#eeeeee',
     fontSize: '16px',
     textDecoration: 'none',
     textAlign: 'center' as const,
