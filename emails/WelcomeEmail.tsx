@@ -8,7 +8,7 @@ import { Preview } from '@react-email/preview';
 import { Section } from '@react-email/section';
 import { Text } from '@react-email/text';
 
-const baseUrl = process.env.URL;
+const baseUrl = process.env.URL || 'https://soon.kafeasist.com';
 
 interface WelcomeEmailProps {
     token: string;
@@ -67,8 +67,9 @@ export const WelcomeEmail = ({ token }: WelcomeEmailProps) => (
 export default WelcomeEmail;
 
 const main = {
-    backgroundColor: '#000000',
-    color: '#eeeeee',
+    padding: '3rem',
+    borderRadius: '12px',
+    backgroundColor: '#eeeeee',
     fontFamily:
         '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
 };
@@ -92,7 +93,7 @@ const btnContainer = {
 };
 
 const button = {
-    backgroundColor: '#eeeeee',
+    backgroundColor: '#cccccc',
     borderRadius: '16px',
     fontSize: '16px',
     textDecoration: 'none',
@@ -101,7 +102,7 @@ const button = {
 };
 
 const hr = {
-    borderColor: '#cccccc',
+    borderColor: '#000000',
     margin: '20px 0',
 };
 
