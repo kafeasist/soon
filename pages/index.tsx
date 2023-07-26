@@ -113,9 +113,9 @@ const Home = () => {
     return (
         <main className='h-screen bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-rose-100 to-teal-100 dark:from-gray-700 dark:via-gray-900 dark:to-black'>
             <section className='container mx-auto flex h-screen flex-col items-center justify-center px-16 text-center dark:text-white md:px-24 lg:px-56'>
-                <Link href='/' className='mb-16 scale-150'>
+                <div className='mb-16 scale-150'>
                     <Logo dark={dark} />
-                </Link>
+                </div>
                 <Typography
                     variant='h1'
                     className='mb-8 scale-125 animate-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 bg-clip-text !leading-normal text-transparent dark:from-indigo-200 dark:via-red-200 dark:to-yellow-100'
@@ -153,17 +153,28 @@ const Home = () => {
                     </div>
                 </form>
                 <div className='mt-16 flex w-full items-center justify-center space-x-24'>
-                    <Link href='https://github.com/kafeasist' target='_blank'>
+                    <Link
+                        aria-label='GitHub'
+                        href='https://github.com/kafeasist'
+                        target='_blank'
+                    >
                         <Github className='h-8 w-8' />
                     </Link>
-                    <Button variant='link' onClick={handleDarkMode}>
+                    <Button
+                        variant='link'
+                        onClick={handleDarkMode}
+                        aria-label='theme'
+                    >
                         {!dark ? (
                             <Sun className='h-8 w-8' />
                         ) : (
                             <Moon className='h-8 w-8' />
                         )}
                     </Button>
-                    <Link href='mailto:destek@kafeasist.com'>
+                    <Link
+                        aria-label='E-mail'
+                        href='mailto:destek@kafeasist.com'
+                    >
                         <Mail className='h-8 w-8' />
                     </Link>
                 </div>
