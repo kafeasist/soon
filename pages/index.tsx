@@ -113,23 +113,26 @@ const Home = () => {
     return (
         <main className='h-screen bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-rose-100 to-teal-100 dark:from-gray-700 dark:via-gray-900 dark:to-black'>
             <section className='container mx-auto flex h-screen flex-col items-center justify-center px-16 text-center dark:text-white md:px-24 lg:px-56'>
-                <div className='mb-16 scale-150'>
+                <div className='mb-16 lg:scale-150'>
                     <Logo dark={dark} />
                 </div>
                 <Typography
                     variant='h1'
-                    className='mb-8 scale-125 animate-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 bg-clip-text !leading-normal text-transparent dark:from-indigo-200 dark:via-red-200 dark:to-yellow-100'
+                    className='mb-8 animate-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 bg-clip-text !leading-normal text-transparent dark:from-indigo-200 dark:via-red-200 dark:to-yellow-100'
                 >
                     {responses.html.comingsoon}
                 </Typography>
-                <Typography variant='p' className='max-w-lg scale-125'>
+                <Typography
+                    variant='p'
+                    className='text-md max-w-lg md:text-lg lg:text-xl'
+                >
                     {responses.html.description}
                 </Typography>
                 <form
                     onSubmit={handleSubmit(onSubmit)}
-                    className='flex w-full justify-center'
+                    className='flex w-full justify-center lg:scale-125'
                 >
-                    <div className='mt-14 w-full max-w-sm scale-125 justify-center md:flex md:flex-row md:space-x-2'>
+                    <div className='mt-14 w-full max-w-sm justify-center md:flex md:flex-row md:space-x-2'>
                         <Input
                             className='mb-4 md:mb-0'
                             type='email'
@@ -158,7 +161,7 @@ const Home = () => {
                         href='https://github.com/kafeasist'
                         target='_blank'
                     >
-                        <Github className='h-8 w-8' />
+                        <Github className='h-6 w-6 md:h-8 md:w-8' />
                     </Link>
                     <Button
                         variant='link'
@@ -166,16 +169,16 @@ const Home = () => {
                         aria-label='theme'
                     >
                         {!dark ? (
-                            <Sun className='h-8 w-8' />
+                            <Sun className='h-6 w-6 md:h-8 md:w-8' />
                         ) : (
-                            <Moon className='h-8 w-8' />
+                            <Moon className='h-6 w-6 md:h-8 md:w-8' />
                         )}
                     </Button>
                     <Link
                         aria-label='E-mail'
                         href='mailto:destek@kafeasist.com'
                     >
-                        <Mail className='h-8 w-8' />
+                        <Mail className='h-6 w-6 md:h-8 md:w-8' />
                     </Link>
                 </div>
             </section>

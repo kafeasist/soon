@@ -1,6 +1,14 @@
-# kafeasist/soon
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/40398628/219168270-f14d82ed-1466-4cf2-9d2f-e02bdf00bce4.png" width="130" alt="Logo" />
+</p>
 
-[kafeasist](https://kafeasist.com) is a currently work in progress café/restaurant management software as a service powered with AI made with ❤️ by a single developer. [kafeasist](https://kafeasist.com) makes managing your business much more simpler with easy-to-use dashboard. Analyzes your data and provides you suggestions to improve your business.
+<h1 align="center">
+  kafeasist/soon
+</h1>
+
+<p align="center">
+	kafeasist is a currently work in progress café/restaurant management software as a service powered with AI made with ❤️ by a single developer. kafeasist makes managing your business much more simpler with easy-to-use dashboard. Analyzes your data and provides you suggestions to improve your business.
+</p>
 
 <hr />
 
