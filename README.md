@@ -21,6 +21,10 @@
 
 </div>
 
+<p align="center">
+  <img src="https://github.com/kafeasist/soon/assets/40398628/3fc14efb-b2ff-4c56-9363-710665511381" alt="Dashboard image" />
+</p>
+
 # Table of contents
 
 -   [What is this?](#what-is-this)
