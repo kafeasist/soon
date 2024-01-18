@@ -112,19 +112,19 @@ const Home = () => {
 
     return (
         <main className='h-screen bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-rose-100 to-teal-100 dark:from-gray-700 dark:via-gray-900 dark:to-black'>
-            <section className='container mx-auto flex h-screen flex-col items-center justify-center px-16 text-center dark:text-white md:px-24 lg:px-56'>
-                <div className='mb-16 lg:scale-150'>
+            <section className='container mx-auto flex h-screen flex-col items-center justify-center space-y-4 px-16 text-center dark:text-white md:px-24 lg:space-y-8 lg:px-56'>
+                <div className='lg:scale-150'>
                     <Logo dark={dark} />
                 </div>
                 <Typography
                     variant='h1'
-                    className='mb-8 animate-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 bg-clip-text !leading-normal text-transparent dark:from-indigo-200 dark:via-red-200 dark:to-yellow-100'
+                    className='animate-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 bg-clip-text !leading-normal text-transparent dark:from-indigo-200 dark:via-red-200 dark:to-yellow-100'
                 >
                     {responses.html.comingsoon}
                 </Typography>
                 <Typography
                     variant='p'
-                    className='text-md max-w-lg md:text-lg lg:text-xl'
+                    className='max-w-lg text-lg md:text-lg lg:text-xl'
                 >
                     {responses.html.description}
                 </Typography>
@@ -132,9 +132,9 @@ const Home = () => {
                     onSubmit={handleSubmit(onSubmit)}
                     className='flex w-full justify-center lg:scale-125'
                 >
-                    <div className='mt-14 w-full max-w-sm justify-center md:flex md:flex-row md:space-x-2'>
+                    <div className='w-full max-w-sm justify-center space-y-2 md:flex md:flex-row md:space-x-2 md:space-y-0'>
                         <Input
-                            className='mb-4 md:mb-0'
+                            className='md:mb-0'
                             type='email'
                             placeholder={responses.html.subscribeInput}
                             {...register('email', {
@@ -155,7 +155,7 @@ const Home = () => {
                         </Button>
                     </div>
                 </form>
-                <div className='mt-16 flex w-full items-center justify-center space-x-24'>
+                <div className='flex w-full items-center justify-center space-x-12 md:space-x-16 lg:space-x-24'>
                     <Link
                         aria-label='GitHub'
                         href='https://github.com/kafeasist'

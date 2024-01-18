@@ -30,7 +30,7 @@ const Typography: NextPage<ITypography> = ({
             return (
                 <h2
                     className={
-                        'mt-10 scroll-m-20 border-b border-b-slate-200 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 dark:border-b-slate-700 ' +
+                        'scroll-m-20 border-b border-b-slate-200 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 dark:border-b-slate-700 ' +
                         className
                     }
                     style={style}
@@ -42,7 +42,7 @@ const Typography: NextPage<ITypography> = ({
             return (
                 <h3
                     className={
-                        'mt-8 scroll-m-20 text-2xl font-semibold tracking-tight ' +
+                        'scroll-m-20 text-2xl font-semibold tracking-tight ' +
                         className
                     }
                     style={style}
@@ -54,7 +54,7 @@ const Typography: NextPage<ITypography> = ({
             return (
                 <h4
                     className={
-                        'mt-8 scroll-m-20 text-xl font-semibold tracking-tight ' +
+                        'scroll-m-20 text-xl font-semibold tracking-tight ' +
                         className
                     }
                     style={style}
@@ -64,12 +64,7 @@ const Typography: NextPage<ITypography> = ({
             );
         case 'p':
             return (
-                <p
-                    className={
-                        'leading-7 [&:not(:first-child)]:mt-6 ' + className
-                    }
-                    style={style}
-                >
+                <p className={'leading-7 ' + className} style={style}>
                     {children}
                 </p>
             );
